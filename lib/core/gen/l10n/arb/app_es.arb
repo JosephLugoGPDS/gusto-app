@@ -1,0 +1,37 @@
+{
+  "@_APP_GENERAL": {},
+  "app": "Consultas App",
+  "splashAppVersion": "Versión 0.0.1",
+  "splashAppVersionLabel": "Versión",
+  "warning": "Advertencia",
+  "accept": "Aceptar",
+  "cancel": "Cancelar",
+
+  "@_TASTE_LIST": {},
+  "search": "Buscar",
+  "tasteListTitle": "Lista de Gustos",
+  "tasteListEmpty": "No se encontraron gustos",
+  "tasteListLoading": "Cargando gustos...",
+  "tasteListError": "Error al cargar gustos. Intente nuevamente.",
+
+  "@_TASTE_ITEM": {},
+  "tasteName": "Nombre",
+  "tasteDescription": "Descripción",
+  "tasteAddFavorite": "Agregar a favoritos",
+  "tasteRemoveFavorite": "Quitar de favoritos",
+
+  "@_SEARCH": {},
+  "searchPlaceholder": "Escribe para buscar gustos...",
+  "searchNoResults": "No se encontraron resultados para tu búsqueda",
+  "searchNoResultsMsg": "No se encontraron",
+  "searchNoResultsMsgAccent": " resultados para tu búsqueda",
+
+  "@_ERRORS": {},
+  "networkError": "Error de red. Por favor revisa tu conexión.",
+  "unknownError": "Ocurrió un error inesperado.",
+
+  "@_BUTTONS": {},
+  "loadMore": "Cargar más",
+  "retry": "Reintentar",
+  "clearSearch": "Limpiar búsqueda"
+}
