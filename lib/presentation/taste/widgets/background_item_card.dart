@@ -10,9 +10,6 @@ class BackgroundItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorPair = TastesHelper.getRandomColorDropdownItem();
-    print('JY - colorPair: $colorPair');
-    print('JY - colorPair id: ${colorPair.id.hexToColor}');
-    print('JY - colorPair desc: ${colorPair.description.hexToColor}');
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(

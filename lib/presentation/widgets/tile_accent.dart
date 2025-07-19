@@ -25,10 +25,17 @@ class TileAccent extends StatelessWidget {
       child: Text.rich(
         TextSpan(
           children: [
-            TextSpan(text: text1, style: textTheme.displaySmall),
-            TextSpan(text: text2, style: text2Style ?? textTheme.displayMedium),
+            TextSpan(
+                text: text1,
+                style: textTheme.displayLarge
+                    ?.copyWith(fontWeight: FontWeight.w200)),
+            TextSpan(
+                text: text2,
+                style: text2Style ??
+                    textTheme.displayLarge
+                        ?.copyWith(fontWeight: FontWeight.w500)),
             if (text3 != null)
-              TextSpan(text: text3, style: textTheme.displaySmall),
+              TextSpan(text: text3, style: textTheme.displayLarge),
           ],
         ),
         textAlign: alignment ?? TextAlign.center,

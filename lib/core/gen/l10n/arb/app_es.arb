@@ -10,6 +10,7 @@
   "@_TASTE_LIST": {},
   "search": "Buscar",
   "tasteListTitle": "Lista de Gustos",
+  "taste": "Gusto",
   "tasteListEmpty": "No se encontraron gustos",
   "tasteListLoading": "Cargando gustos...",
   "tasteListError": "Error al cargar gustos. Intente nuevamente.",
@@ -26,9 +27,14 @@
   "searchNoResultsMsg": "No se encontraron",
   "searchNoResultsMsgAccent": " resultados para tu búsqueda",
 
+  "@_TYPES": {},
+  "selectTypes": "Seleccionar tipo",
+
   "@_ERRORS": {},
   "networkError": "Error de red. Por favor revisa tu conexión.",
   "unknownError": "Ocurrió un error inesperado.",
+  "errorTitle": "Error: ",
+  "notImplemented": "Opción no implementada",
 
   "@_BUTTONS": {},
   "loadMore": "Cargar más",

@@ -1,4 +1,5 @@
 import 'package:app/presentation/splash/page/splash_page.dart';
+import 'package:app/presentation/taste/pages/taste_full_detail_page.dart';
 import 'package:app/presentation/taste/pages/taste_list_page.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +15,9 @@ class Routes {
 
   String get root => '/';
   String get splash => '/splash';
-  String get preferences => 'preferences';
-  String get preferenceDetail => 'preferences/:id';
-  String get preferencesCreate => 'preferences/create';
+  String get preferences => 'taste';
+  String get preferenceDetail => 'taste/:id';
+  String get preferencesCreate => 'taste/create';
 
   static final Handler _splashHandler = Handler(
       handlerFunc: (BuildContext? context, Map<String, dynamic> params) =>
@@ -24,10 +25,16 @@ class Routes {
   static final Handler _tasteHandler = Handler(
       handlerFunc: (BuildContext? context, Map<String, dynamic> params) =>
           const TasteListPage());
+  static final Handler _tasteDetailHandler = Handler(
+      handlerFunc: (BuildContext? context, Map<String, dynamic> params) =>
+          TasteFullDetailPage(
+            id: params['id'][0],
+          ));
 
   void configureRoutes() {
     router.define(root, handler: _splashHandler);
     router.define(splash, handler: _splashHandler);
     router.define(preferences, handler: _tasteHandler);
+    router.define(preferenceDetail, handler: _tasteDetailHandler);
   }
 }

@@ -27,9 +27,10 @@ class ThemeFlatButton extends StatelessWidget {
     this.radius,
     this.height,
     this.textStyle,
-  }) : textColor = textColor ?? AppColors.textColor,
-       backgroundColor = backgroundColor ?? AppColors.whiteColor,
-       borderColor = borderColor ?? (backgroundColor ?? AppColors.whiteColor);
+  })  : textColor = textColor ?? AppColors.whiteColor,
+        backgroundColor = backgroundColor ?? AppColors.onPrimaryColor,
+        borderColor =
+            borderColor ?? (backgroundColor ?? AppColors.onPrimaryColor);
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +38,8 @@ class ThemeFlatButton extends StatelessWidget {
       foregroundColor: textColor,
       maximumSize: Size(360.w, 42.h),
       padding: EdgeInsets.symmetric(horizontal: 8.w),
-      textStyle:
-          textStyle ??
-          context.textTheme.bodyMedium?.copyWith(color: textColor, height: 1),
+      textStyle: textStyle ??
+          context.textTheme.titleMedium?.copyWith(color: textColor, height: 1),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(radius ?? 6.r)),
         side: BorderSide(
@@ -52,7 +52,7 @@ class ThemeFlatButton extends StatelessWidget {
     );
 
     return SizedBox(
-      height: height ?? 42.h,
+      height: height ?? 38.h,
       width: width,
       child: TextButton(
         style: flatButtonStyle,

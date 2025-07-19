@@ -73,7 +73,7 @@ class _TasteListService implements TasteListService {
     )
         .compose(
           _dio.options,
-          '/v2/pokemon/${id}',
+          '/v2/pokemon-form/${id}',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -86,6 +86,39 @@ class _TasteListService implements TasteListService {
     late TasteDetailModel _value;
     try {
       _value = TasteDetailModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<TasteTypeListModel> getTypes() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<TasteTypeListModel>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/v2/type',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late TasteTypeListModel _value;
+    try {
+      _value = TasteTypeListModel.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

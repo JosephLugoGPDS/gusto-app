@@ -13,18 +13,17 @@ class TasteItemCard extends StatelessWidget {
     super.key,
     required this.taste,
     required this.imageUrl,
+    required this.onPressed,
   });
 
   final TasteModel taste;
   final String imageUrl;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // pokeDetailCubit.doGetPokeDetail(taste.url!);
-        // context.go('/detail');
-      },
+      onTap: onPressed,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10.r),
         child: Stack(
@@ -34,14 +33,8 @@ class TasteItemCard extends StatelessWidget {
               top: 12.w,
               left: 12.w,
               child: GestureDetector(
-                  onTap: () {
-                    // if (isFavorited) {
-                    //   context.read<PokeHeartCubit>().removePokemon(taste.name!);
-                    // } else {
-                    //   context.read<PokeHeartCubit>().addPokemon(taste.name!);
-                    // }
-                  },
-                  child: Assets.images.tastes.heartFilled.svg(
+                  onTap: () {},
+                  child: Assets.images.tastes.heartOutline.svg(
                     width: 20.w,
                     height: 20.w,
                   )),

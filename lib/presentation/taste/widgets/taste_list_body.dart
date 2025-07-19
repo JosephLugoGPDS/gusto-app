@@ -1,5 +1,7 @@
 import 'package:app/core/extensions/context_extension.dart';
+import 'package:app/core/navigation/route.dart';
 import 'package:app/data/models/taste_model.dart';
+import 'package:app/injectable.dart';
 import 'package:app/presentation/taste/widgets/taste_item_card.dart';
 import 'package:app/presentation/widgets/not_found_view.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +31,16 @@ class TasteListBody extends StatelessWidget {
           delegate: SliverChildBuilderDelegate(
             (context, index) {
               final taste = tasteList[index];
-              return TasteItemCard(taste: taste, imageUrl: imageUrl);
+              return TasteItemCard(
+                onPressed: () => Navigator.pushNamed(
+                  context,
+                  getIt<Routes>()
+                      .preferenceDetail
+                      .replaceAll(':id', taste.id.toString()),
+                ),
+                taste: taste,
+                imageUrl: imageUrl,
+              );
             },
             childCount: tasteList.length,
           ),

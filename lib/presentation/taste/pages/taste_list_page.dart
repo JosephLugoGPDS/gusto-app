@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:app/core/bloc/result_state.dart';
 import 'package:app/core/extensions/context_extension.dart';
 import 'package:app/core/gen/l10n/l10n.dart';
 import 'package:app/core/resources/colors.dart';
@@ -5,9 +8,12 @@ import 'package:app/injectable.dart';
 import 'package:app/logic/taste_list/taste_list_cubit.dart';
 import 'package:app/logic/taste_list/taste_list_state.dart';
 import 'package:app/presentation/taste/widgets/taste_list_body.dart';
+import 'package:app/presentation/widgets/not_found_view.dart';
 import 'package:app/presentation/widgets/theme_app_bar.dart';
+import 'package:app/presentation/widgets/theme_blur_bottom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TasteListPage extends StatefulWidget {
   const TasteListPage({super.key});
@@ -20,6 +26,7 @@ class _TasteListPageState extends State<TasteListPage> {
   final ScrollController _scrollController = ScrollController();
   late TasteListCubit _cubit;
   late final TextEditingController _searchController;
+  late final ValueNotifier<bool> showScrollToTopButton;
 
   void _getMorePokemons() {
     if (_cubit.state.hasMoreTasteToLoad) {
@@ -32,6 +39,11 @@ class _TasteListPageState extends State<TasteListPage> {
     final position = _scrollController.position;
     if (position.pixels + threshold >= position.maxScrollExtent) {
       _getMorePokemons();
+    }
+    if (position.pixels > threshold) {
+      showScrollToTopButton.value = true;
+    } else {
+      showScrollToTopButton.value = false;
     }
   }
 
@@ -46,6 +58,7 @@ class _TasteListPageState extends State<TasteListPage> {
     _searchController = TextEditingController();
     _cubit = getIt<TasteListCubit>();
     _scrollController.addListener(_scrollListener);
+    showScrollToTopButton = ValueNotifier<bool>(false);
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _cubit.obtainUpdatedTasteList();
@@ -57,6 +70,7 @@ class _TasteListPageState extends State<TasteListPage> {
     _cubit.close();
     _searchController.dispose();
     _scrollController.dispose();
+    showScrollToTopButton.dispose();
     super.dispose();
   }
 
@@ -71,22 +85,61 @@ class _TasteListPageState extends State<TasteListPage> {
           appBar: ThemeAppBar(title: l10n.tasteListTitle),
           body: RefreshIndicator(
             onRefresh: _onRefresh,
-            child: CustomScrollView(
-              controller: _scrollController,
-              physics: const ClampingScrollPhysics(),
-              slivers: [
-                state.resultState.whenOrNull(
-                      loading: () => const SliverFillRemaining(
-                        child: Center(
-                          child: CircularProgressIndicator(),
-                        ),
+            child: Stack(
+              children: [
+                CustomScrollView(
+                  controller: _scrollController,
+                  physics: const ClampingScrollPhysics(),
+                  slivers: [
+                    // const SliverToBoxAdapter(child: SelectorTypes()),
+                    state.resultState.whenOrNull(
+                          loading: () => const SliverFillRemaining(
+                            child: Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          ),
+                          error: (String message) => SliverFillRemaining(
+                            child: NotFoundView(
+                              title: l10n.errorTitle,
+                              titleAccent: ' $message',
+                              onPressed: () => _onRefresh(),
+                            ),
+                          ),
+                        ) ??
+                        TasteListBody(
+                            imageUrl: state.imageUrl,
+                            tasteList: state.tasteList),
+                    SliverToBoxAdapter(
+                        child: SizedBox(height: 20 + context.paddingBottom)),
+                  ],
+                ),
+                if (state.resultState is Data) const ThemeBlurBottom(),
+                ValueListenableBuilder<bool>(
+                  valueListenable: showScrollToTopButton,
+                  builder: (context, isVisible, child) {
+                    if (!isVisible) return const SizedBox.shrink();
+                    return Positioned(
+                      bottom: context.paddingBottom + 20,
+                      right: 20.w,
+                      child: FloatingActionButton(
+                        mini: true,
+                        backgroundColor: AppColors.onPrimaryColor,
+                        onPressed: () {
+                          _scrollController.animateTo(
+                            0,
+                            duration: const Duration(milliseconds: 400),
+                            curve: Curves.easeInOut,
+                          );
+                        },
+                        child: Icon(
+                            Platform.isIOS
+                                ? Icons.keyboard_arrow_up
+                                : Icons.arrow_upward,
+                            color: Colors.white),
                       ),
-                      // error:
-                    ) ??
-                    TasteListBody(
-                        imageUrl: state.imageUrl, tasteList: state.tasteList),
-                SliverToBoxAdapter(
-                    child: SizedBox(height: 20 + context.paddingBottom)),
+                    );
+                  },
+                ),
               ],
             ),
           ),

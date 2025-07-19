@@ -1,5 +1,6 @@
 import 'package:app/data/models/taste_detail_model.dart';
 import 'package:app/data/models/taste_list_model.dart';
+import 'package:app/data/models/taste_type_list_model.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
@@ -17,6 +18,9 @@ abstract class TasteListService {
   Future<TasteListModel> getTasteList(
       @Query('offset') String offset, @Query('limit') String limit);
 
-  @GET('/v2/pokemon/{id}')
+  @GET('/v2/pokemon-form/{id}')
   Future<TasteDetailModel> getTasteDetail(@Path('id') String id);
+
+  @GET('/v2/type')
+  Future<TasteTypeListModel> getTypes();
 }
