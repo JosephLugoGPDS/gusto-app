@@ -5,8 +5,10 @@ import 'package:app/core/bloc/simple_bloc_observer.dart';
 import 'package:app/injectable.dart';
 
 Future setup(String env) async {
-  WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies(env);
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle.light.copyWith(
       statusBarColor: Colors.black,

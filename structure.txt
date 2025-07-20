@@ -1,0 +1,120 @@
+.
+├── analysis_options.yaml
+├── android
+│   ├── app
+│   │   ├── build.gradle.kts
+│   │   └── src
+│   ├── app_android.iml
+│   ├── build.gradle.kts
+│   ├── gradle
+│   │   └── wrapper
+│   ├── gradle.properties
+│   ├── gradlew
+│   ├── gradlew.bat
+│   ├── local.properties
+│   └── settings.gradle.kts
+├── app.iml
+├── assets
+│   ├── images
+│   │   ├── shared
+│   │   └── tastes
+│   └── lottie
+│       └── loader.json
+├── devtools_options.yaml
+├── ios
+│   ├── Flutter
+│   │   ├── AppFrameworkInfo.plist
+│   │   ├── Debug.xcconfig
+│   │   ├── flutter_export_environment.sh
+│   │   ├── Flutter.podspec
+│   │   ├── Generated.xcconfig
+│   │   └── Release.xcconfig
+│   ├── Podfile
+│   ├── Podfile.lock
+│   ├── Pods
+│   │   ├── Headers
+│   │   ├── Local Podspecs
+│   │   ├── Manifest.lock
+│   │   ├── Pods.xcodeproj
+│   │   └── Target Support Files
+│   ├── Runner
+│   │   ├── AppDelegate.swift
+│   │   ├── Assets.xcassets
+│   │   ├── Base.lproj
+│   │   ├── GeneratedPluginRegistrant.h
+│   │   ├── GeneratedPluginRegistrant.m
+│   │   ├── Info.plist
+│   │   └── Runner-Bridging-Header.h
+│   ├── Runner.xcodeproj
+│   │   ├── project.pbxproj
+│   │   ├── project.xcworkspace
+│   │   └── xcshareddata
+│   ├── Runner.xcworkspace
+│   │   ├── contents.xcworkspacedata
+│   │   └── xcshareddata
+│   └── RunnerTests
+│       └── RunnerTests.swift
+├── l10n.yaml
+├── lib
+│   ├── app
+│   │   ├── api_dev.dart
+│   │   ├── api_prod.dart
+│   │   ├── app.dart
+│   │   ├── base_api.dart
+│   │   └── setup.dart
+│   ├── app.dart
+│   ├── core
+│   │   ├── api
+│   │   ├── bloc
+│   │   ├── constants
+│   │   ├── di
+│   │   ├── exceptions
+│   │   ├── extensions
+│   │   ├── gen
+│   │   ├── helpers
+│   │   ├── navigation
+│   │   ├── preferences
+│   │   ├── resources
+│   │   ├── services
+│   │   ├── style
+│   │   └── widget
+│   ├── data
+│   │   ├── models
+│   │   ├── repositories
+│   │   ├── services
+│   │   └── sources
+│   ├── domain
+│   │   ├── create_favorite_use_case.dart
+│   │   ├── delete_all_favorites_use_case.dart
+│   │   ├── delete_favorite_by_id_use_case.dart
+│   │   ├── no_params.dart
+│   │   ├── obtain_favorites_use_case.dart
+│   │   ├── obtain_taste_full_use_case.dart
+│   │   ├── obtain_taste_list_use_case.dart
+│   │   ├── obtain_taste_type_list_use_case.dart
+│   │   └── use_case.dart
+│   ├── injectable.config.dart
+│   ├── injectable.dart
+│   ├── logic
+│   │   ├── delete_all_favorites
+│   │   ├── delete_favorite
+│   │   ├── dropdown_open
+│   │   ├── favorite_form
+│   │   ├── favorite_list
+│   │   ├── images
+│   │   ├── splash
+│   │   ├── taste_full
+│   │   ├── taste_list
+│   │   └── taste_types
+│   ├── main.dart
+│   └── presentation
+│       ├── favorite
+│       ├── splash
+│       ├── taste
+│       └── widgets
+├── pubspec.lock
+├── pubspec.yaml
+├── README.md
+└── structure.txt
+
+66 directories, 52 files

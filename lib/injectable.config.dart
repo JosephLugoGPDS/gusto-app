@@ -17,8 +17,8 @@ import 'package:logger/logger.dart' as _i9;
 import 'package:package_info_plus/package_info_plus.dart' as _i10;
 import 'package:shared_preferences/shared_preferences.dart' as _i12;
 
-import 'app/api_dev.dart' as _i7;
-import 'app/api_prod.dart' as _i8;
+import 'app/api_dev.dart' as _i8;
+import 'app/api_prod.dart' as _i7;
 import 'app/base_api.dart' as _i6;
 import 'core/di/app_module.dart' as _i38;
 import 'core/di/logger_module.dart' as _i37;
@@ -49,8 +49,8 @@ import 'logic/taste_full/taste_full_cubit.dart' as _i32;
 import 'logic/taste_list/taste_list_cubit.dart' as _i33;
 import 'logic/taste_types/taste_types_cubit.dart' as _i34;
 
-const String _dev = 'dev';
 const String _prod = 'prod';
+const String _dev = 'dev';
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -74,12 +74,12 @@ extension GetItInjectableX on _i1.GetIt {
     gh.factory<_i4.DropdownOpenCubit>(() => _i4.DropdownOpenCubit());
     gh.lazySingleton<_i5.FluroRouter>(() => routeModule.fluroRouter);
     gh.lazySingleton<_i6.IApi>(
-      () => _i7.ApiDev(),
-      registerFor: {_dev},
+      () => _i7.ApiProd(),
+      registerFor: {_prod},
     );
     gh.lazySingleton<_i6.IApi>(
-      () => _i8.ApiProd(),
-      registerFor: {_prod},
+      () => _i8.ApiDev(),
+      registerFor: {_dev},
     );
     gh.lazySingleton<_i9.Logger>(() => loggerModule.logger);
     await gh.factoryAsync<_i10.PackageInfo>(
@@ -100,12 +100,12 @@ extension GetItInjectableX on _i1.GetIt {
       instanceName: 'poke_api_domain',
     );
     gh.factory<String>(
-      () => networkModule.spritsDomain(gh<_i6.IApi>()),
-      instanceName: 'sprits_domain',
-    );
-    gh.factory<String>(
       () => networkModule.limitServices(gh<_i6.IApi>()),
       instanceName: 'limit',
+    );
+    gh.factory<String>(
+      () => networkModule.spritsDomain(gh<_i6.IApi>()),
+      instanceName: 'sprits_domain',
     );
     gh.factory<_i13.UrlImageLocalSource>(() => _i13.UrlImageLocalSourceImpl(
         gh<String>(instanceName: 'sprits_domain')));
