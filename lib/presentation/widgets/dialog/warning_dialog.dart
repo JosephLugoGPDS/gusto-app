@@ -1,5 +1,8 @@
 import 'package:app/core/resources/colors.dart';
+import 'package:app/injectable.dart';
+import 'package:app/presentation/widgets/buttons/theme_flat_button.dart';
 import 'package:app/presentation/widgets/dialog/base_dialog.dart';
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:app/core/extensions/context_extension.dart';
@@ -21,25 +24,18 @@ class WarningDialog extends BaseDialog {
 
   @override
   Widget createAcceptButton({BuildContext? context}) {
-    final textStyle = context?.textTheme;
-    return MaterialButton(
+    return ThemeFlatButton(
       onPressed: () {
         if (onAcceptButton != null) {
           onAcceptButton!();
         }
         try {
-          //getIt<FluroRouter>().pop(context!);
-          Navigator.pop(context!);
-        } catch (e, stacktrace) {}
+          getIt<FluroRouter>().pop(context!);
+        } catch (e, _) {}
       },
-      color: AppColors.errorColor,
-      child: Text(
-        acceptButtonText ?? 'Aceptar',
-        style: textStyle?.bodyMedium?.copyWith(
-          fontWeight: FontWeight.w600,
-          color: Colors.white,
-        ),
-      ),
+      backgroundColor: AppColors.errorColor,
+      textColor: AppColors.whiteColor,
+      text: acceptButtonText ?? 'Aceptar',
     );
   }
 

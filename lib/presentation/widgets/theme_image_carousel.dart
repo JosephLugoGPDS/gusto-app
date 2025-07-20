@@ -32,11 +32,15 @@ class ImageCarousel extends StatefulWidget {
   final List<String> images;
   final List<String> names;
   final double height;
+  final bool isFavorite;
+  final VoidCallback onFavoritePressed;
 
   const ImageCarousel(
       {super.key,
       required this.images,
       this.height = 100,
+      required this.isFavorite,
+      required this.onFavoritePressed,
       required this.names});
 
   @override
@@ -128,12 +132,17 @@ class _ImageCarouselState extends State<ImageCarousel> {
                     top: 20.h,
                     right: 20.w,
                     child: GestureDetector(
-                        onTap: () {},
-                        child: Assets.images.tastes.heartOutline.svg(
-                          width: 20.w,
-                          height: 20.w,
-                          color: AppColors.textAccentColor,
-                        )),
+                        onTap: widget.onFavoritePressed,
+                        child: widget.isFavorite
+                            ? Assets.images.tastes.heartFilled.svg(
+                                width: 20.w,
+                                height: 20.w,
+                              )
+                            : Assets.images.tastes.heartOutline.svg(
+                                width: 20.w,
+                                height: 20.w,
+                                color: AppColors.textAccentColor,
+                              )),
                   ),
                 ],
               ),

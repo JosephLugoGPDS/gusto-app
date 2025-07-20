@@ -14,11 +14,15 @@ class TasteItemCard extends StatelessWidget {
     required this.taste,
     required this.imageUrl,
     required this.onPressed,
+    required this.onFavoritePressed,
+    required this.isFavorite,
   });
 
   final TasteModel taste;
   final String imageUrl;
   final VoidCallback onPressed;
+  final VoidCallback onFavoritePressed;
+  final bool isFavorite;
 
   @override
   Widget build(BuildContext context) {
@@ -30,32 +34,41 @@ class TasteItemCard extends StatelessWidget {
           children: [
             const BackgroundItemCard(),
             Positioned(
-              top: 12.w,
-              left: 12.w,
+              top: 10.w,
+              left: 10.w,
               child: GestureDetector(
-                  onTap: () {},
-                  child: Assets.images.tastes.heartOutline.svg(
-                    width: 20.w,
-                    height: 20.w,
-                  )),
+                  onTap: onFavoritePressed,
+                  child: isFavorite
+                      ? Assets.images.tastes.heartFilled.svg(
+                          width: 20.w,
+                          height: 20.w,
+                        )
+                      : Assets.images.tastes.heartOutline.svg(
+                          width: 20.w,
+                          height: 20.w,
+                        )),
             ),
             Positioned(
-              top: 12.w,
-              left: 26.w,
-              right: 19.w,
+              top: 10.w,
+              left: 25.w,
+              right: 20.w,
               child: ThemeImage(id: taste.id!, url: imageUrl),
             ),
             Positioned(
-              bottom: 12.5.w,
-              left: 12.w,
-              right: 12.w,
+              bottom: 10.w,
+              left: 20.w,
+              right: 10.w,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    taste.name.capitalize,
-                    style: context.textTheme.labelLarge
-                        ?.copyWith(color: AppColors.whiteColor),
+                  Expanded(
+                    child: Text(
+                      taste.name.capitalize,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: context.textTheme.labelLarge
+                          ?.copyWith(color: AppColors.whiteColor),
+                    ),
                   ),
                 ],
               ),

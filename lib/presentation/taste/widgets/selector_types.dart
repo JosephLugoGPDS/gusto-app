@@ -6,7 +6,6 @@ import 'package:app/injectable.dart';
 import 'package:app/logic/taste_types/taste_types_cubit.dart';
 import 'package:app/presentation/widgets/theme_dropdown.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -44,8 +43,8 @@ class SelectorTypes extends StatelessWidget {
                             valueAlignment: Alignment.centerLeft,
                             backgroundSelectedColor: AppColors.primaryColor,
                             textSelectedButtonColor: AppColors.whiteColor,
-                            dropdownWidth: 320.w,
-                            buttonWidth: 320.w,
+                            dropdownWidth: 240.w,
+                            buttonWidth: 240.w,
                             buttonHeight: 30.h,
                             itemHeight: 30.h,
                             hintColor: AppColors.whiteColor,

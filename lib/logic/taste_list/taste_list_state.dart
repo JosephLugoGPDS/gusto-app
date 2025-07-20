@@ -12,6 +12,7 @@ class TasteListState with _$TasteListState {
     @Default(true) bool hasMoreTasteToLoad,
     @Default(Initial()) ResultState resultState,
     @Default('') String imageUrl,
+    @Default(false) bool isLoading,
     int? count,
   }) = _TasteListState;
 }

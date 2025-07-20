@@ -21,6 +21,7 @@ mixin _$TasteListState {
   bool get hasMoreTasteToLoad => throw _privateConstructorUsedError;
   ResultState<dynamic> get resultState => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
   int? get count => throw _privateConstructorUsedError;
 
   /// Create a copy of TasteListState
@@ -42,6 +43,7 @@ abstract class $TasteListStateCopyWith<$Res> {
       bool hasMoreTasteToLoad,
       ResultState<dynamic> resultState,
       String imageUrl,
+      bool isLoading,
       int? count});
 
   $ResultStateCopyWith<dynamic, $Res> get resultState;
@@ -67,6 +69,7 @@ class _$TasteListStateCopyWithImpl<$Res, $Val extends TasteListState>
     Object? hasMoreTasteToLoad = null,
     Object? resultState = null,
     Object? imageUrl = null,
+    Object? isLoading = null,
     Object? count = freezed,
   }) {
     return _then(_value.copyWith(
@@ -90,6 +93,10 @@ class _$TasteListStateCopyWithImpl<$Res, $Val extends TasteListState>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       count: freezed == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -122,6 +129,7 @@ abstract class _$$TasteListStateImplCopyWith<$Res>
       bool hasMoreTasteToLoad,
       ResultState<dynamic> resultState,
       String imageUrl,
+      bool isLoading,
       int? count});
 
   @override
@@ -146,6 +154,7 @@ class __$$TasteListStateImplCopyWithImpl<$Res>
     Object? hasMoreTasteToLoad = null,
     Object? resultState = null,
     Object? imageUrl = null,
+    Object? isLoading = null,
     Object? count = freezed,
   }) {
     return _then(_$TasteListStateImpl(
@@ -169,6 +178,10 @@ class __$$TasteListStateImplCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       count: freezed == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -186,6 +199,7 @@ class _$TasteListStateImpl implements _TasteListState {
       this.hasMoreTasteToLoad = true,
       this.resultState = const Initial(),
       this.imageUrl = '',
+      this.isLoading = false,
       this.count})
       : _tasteList = tasteList;
 
@@ -211,11 +225,14 @@ class _$TasteListStateImpl implements _TasteListState {
   @JsonKey()
   final String imageUrl;
   @override
+  @JsonKey()
+  final bool isLoading;
+  @override
   final int? count;
 
   @override
   String toString() {
-    return 'TasteListState(tasteList: $tasteList, offset: $offset, hasMoreTasteToLoad: $hasMoreTasteToLoad, resultState: $resultState, imageUrl: $imageUrl, count: $count)';
+    return 'TasteListState(tasteList: $tasteList, offset: $offset, hasMoreTasteToLoad: $hasMoreTasteToLoad, resultState: $resultState, imageUrl: $imageUrl, isLoading: $isLoading, count: $count)';
   }
 
   @override
@@ -232,6 +249,8 @@ class _$TasteListStateImpl implements _TasteListState {
                 other.resultState == resultState) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
             (identical(other.count, count) || other.count == count));
   }
 
@@ -243,6 +262,7 @@ class _$TasteListStateImpl implements _TasteListState {
       hasMoreTasteToLoad,
       resultState,
       imageUrl,
+      isLoading,
       count);
 
   /// Create a copy of TasteListState
@@ -262,6 +282,7 @@ abstract class _TasteListState implements TasteListState {
       final bool hasMoreTasteToLoad,
       final ResultState<dynamic> resultState,
       final String imageUrl,
+      final bool isLoading,
       final int? count}) = _$TasteListStateImpl;
 
   @override
@@ -274,6 +295,8 @@ abstract class _TasteListState implements TasteListState {
   ResultState<dynamic> get resultState;
   @override
   String get imageUrl;
+  @override
+  bool get isLoading;
   @override
   int? get count;
 

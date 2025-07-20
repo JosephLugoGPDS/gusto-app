@@ -1,3 +1,4 @@
+import 'package:app/presentation/favorite/pages/favorite_list_page.dart';
 import 'package:app/presentation/splash/page/splash_page.dart';
 import 'package:app/presentation/taste/pages/taste_full_detail_page.dart';
 import 'package:app/presentation/taste/pages/taste_list_page.dart';
@@ -18,6 +19,7 @@ class Routes {
   String get preferences => 'taste';
   String get preferenceDetail => 'taste/:id';
   String get preferencesCreate => 'taste/create';
+  String get favoriteList => 'favorites';
 
   static final Handler _splashHandler = Handler(
       handlerFunc: (BuildContext? context, Map<String, dynamic> params) =>
@@ -25,6 +27,9 @@ class Routes {
   static final Handler _tasteHandler = Handler(
       handlerFunc: (BuildContext? context, Map<String, dynamic> params) =>
           const TasteListPage());
+  static final Handler _favoriteListHandler = Handler(
+      handlerFunc: (BuildContext? context, Map<String, dynamic> params) =>
+          const FavoriteListPage());
   static final Handler _tasteDetailHandler = Handler(
       handlerFunc: (BuildContext? context, Map<String, dynamic> params) =>
           TasteFullDetailPage(
@@ -36,5 +41,6 @@ class Routes {
     router.define(splash, handler: _splashHandler);
     router.define(preferences, handler: _tasteHandler);
     router.define(preferenceDetail, handler: _tasteDetailHandler);
+    router.define(favoriteList, handler: _favoriteListHandler);
   }
 }

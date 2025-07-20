@@ -1,3 +1,4 @@
+import 'package:app/core/resources/colors.dart';
 import 'package:flutter/material.dart';
 
 extension ContextExtension on BuildContext {
@@ -19,9 +20,13 @@ extension ContextExtension on BuildContext {
   double get height => MediaQuery.of(this).size.height;
   double get width => MediaQuery.of(this).size.width;
 
-  void showSnackBar(String message) {
+  void showSnackBar(String message, {Color? color}) {
     ScaffoldMessenger.of(this).showSnackBar(SnackBar(
-      content: Text(message),
+      backgroundColor: color ?? AppColors.textAccentSubColor,
+      content: Text(
+        message,
+        style: textTheme.titleMedium,
+      ),
     ));
   }
 }

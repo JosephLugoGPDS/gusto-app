@@ -6,6 +6,14 @@
   "warning": "Advertencia",
   "accept": "Aceptar",
   "cancel": "Cancelar",
+  "loadingFavorites": "Cargando favoritos...",
+  "deletingFavorites": "Eliminando de favoritos...",
+  "favoriteDeleted": "Eliminado correctamente",
+  "favoriteSaved": "Se guardó correctamente",
+  "addToFavorites": "Agregar favoritos",
+  "confirmDeleteFavoriteTitle": "Está seguro de eliminar {favoriteName} de la lista de favoritos",
+  "addDescription": "Agrega una descripción",
+  "addDescription2": "Agrega una descripción para {favoriteName}",
 
   "@_TASTE_LIST": {},
   "search": "Buscar",
@@ -39,5 +47,19 @@
   "@_BUTTONS": {},
   "loadMore": "Cargar más",
   "retry": "Reintentar",
-  "clearSearch": "Limpiar búsqueda"
+  "clearSearch": "Limpiar búsqueda",
+
+  "@_FAVORITES": {},
+  "titleFavorites": "Lista de favoritos",
+  "description": "Ingrese una descripción",
+  "toGoFavorites": "Ir a ver favoritos",
+  "addDescription": "Agregar a",
+  "addDescription2": " {name} a la lista de favoritos",
+  "@addDescription2": {
+    "description": "Mensaje para agregar un Pokémon con nombre dinámico",
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "descriptionLabel": "Ingresa una descripción"
 }

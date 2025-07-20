@@ -1,40 +1,45 @@
 import 'package:app/injectable.dart';
 import 'package:app/core/gen/assets.gen.dart/assets.gen.dart';
 import 'package:app/core/resources/colors.dart';
+import 'package:app/presentation/taste/widgets/selector_types.dart';
 import 'package:app/presentation/widgets/buttons/theme_flat_button.dart';
+import 'package:app/presentation/widgets/theme_form_field.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:app/core/gen/l10n/l10n.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'base_dialog.dart';
 
-class SuccessDialog extends BaseDialog {
-  final String? acceptButtonText;
+class CreateFavoriteFormDialog extends BaseDialog {
   final VoidCallback? onAcceptButton;
   final String textDescription;
   final String textDescriptionAccent;
-  final bool isCloseDialog;
+  final TextEditingController controller;
+  final void Function(String)? onChange;
 
-  SuccessDialog({
+  CreateFavoriteFormDialog({
     this.onAcceptButton,
-    this.acceptButtonText,
     required this.textDescription,
     required this.textDescriptionAccent,
-    this.isCloseDialog = true,
+    required this.controller,
+    required this.onChange,
   });
 
   @override
   Widget createAcceptButton({BuildContext? context}) {
-    return ThemeFlatButton(
-      onPressed: () {
-        getIt<FluroRouter>().pop(context!);
-        if (onAcceptButton != null) {
-          onAcceptButton!();
-        }
-      },
-      text: context?.l10n.accept ?? 'Aceptar',
-      textColor: Colors.white,
-      backgroundColor: AppColors.primaryColor,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+      child: ThemeFlatButton(
+        onPressed: onAcceptButton != null
+            ? () {
+                getIt<FluroRouter>().pop(context!);
+                onAcceptButton!();
+              }
+            : null,
+        text: context?.l10n.accept ?? 'Aceptar',
+        textColor: Colors.white,
+        backgroundColor: AppColors.primaryColor,
+      ),
     );
   }
 
@@ -66,7 +71,14 @@ class SuccessDialog extends BaseDialog {
               ],
             ),
           ),
-          SizedBox(height: 27.h),
+          const SelectorTypes(),
+          SizedBox(height: 10.h),
+          ThemeFormField(
+            controller: controller,
+            onChange: onChange,
+            maxLines: 2,
+            hintText: 'Ingresa una breve descripción',
+          ),
         ],
       ),
     );
@@ -84,7 +96,4 @@ class SuccessDialog extends BaseDialog {
 
   @override
   bool horizontal() => false;
-
-  @override
-  bool canCloseDialog() => isCloseDialog;
 }

@@ -1,6 +1,9 @@
 import 'dart:ui';
 
 class AppColors {
+  static const Color successGreen = Color.fromRGBO(212, 237, 218, 1.0);
+  static const Color successGreenText =
+      Color.fromRGBO(21, 87, 36, 1.0); // #155724
   static const Color aliceBlue = Color.fromRGBO(238, 243, 248, 1.0);
   static const Color lightBlue =
       Color.fromRGBO(245, 249, 255, 1); // background: #F5F9FF;

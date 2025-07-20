@@ -12,13 +12,16 @@ class TasteListCubit extends Cubit<TasteListState> {
   TasteListCubit(this._useCase) : super(const TasteListState());
 
   Future<void> obtainUpdatedTasteList() async {
-    if (!state.hasMoreTasteToLoad) return;
+    if (state.isLoading || !state.hasMoreTasteToLoad) return;
+
+    emit(state.copyWith(isLoading: true));
 
     if (state.offset == 0) {
       emit(state.copyWith(resultState: const Loading()));
     } else {
       emit(state.copyWith(
-          resultState: const LoadingWithMessage(message: 'Cargando...')));
+        resultState: const LoadingWithMessage(message: 'Cargando...'),
+      ));
     }
 
     final result = await _useCase(state.offset.toString());
@@ -28,14 +31,23 @@ class TasteListCubit extends Cubit<TasteListState> {
         emit(state.copyWith(
           offset: 0,
           hasMoreTasteToLoad: true,
+          isLoading: false,
           resultState: Error(error: failure.message),
         ));
       },
       (data) {
-        final updatedList = state.offset > 0
-            ? [...state.tasteList, ...data.results]
-            : data.results;
+        final newItems = data.results;
         final hasMore = data.next != null && data.next!.isNotEmpty;
+
+        final updatedList = state.offset > 0
+            ? [
+                ...state.tasteList,
+                ...newItems.where(
+                  (newItem) => !state.tasteList
+                      .any((existingItem) => existingItem.id == newItem.id),
+                )
+              ]
+            : newItems;
 
         emit(state.copyWith(
           imageUrl: data.imageUrl ?? '',
@@ -43,6 +55,7 @@ class TasteListCubit extends Cubit<TasteListState> {
           offset: state.offset + 10,
           hasMoreTasteToLoad: hasMore,
           count: data.count,
+          isLoading: false,
           resultState: Data(data: updatedList),
         ));
       },
