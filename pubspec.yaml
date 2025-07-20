@@ -64,4 +64,5 @@ flutter:
     - assets/images/
     - assets/images/shared/
     - assets/images/tastes/
+    - assets/images/screens/
     - assets/lottie/

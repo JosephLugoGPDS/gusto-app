@@ -20,6 +20,24 @@
 │   │   └── tastes
 │   └── lottie
 │       └── loader.json
+├── coverage
+│   ├── html
+│   │   ├── amber.png
+│   │   ├── cmd_line
+│   │   ├── core
+│   │   ├── data
+│   │   ├── domain
+│   │   ├── emerald.png
+│   │   ├── gcov.css
+│   │   ├── glass.png
+│   │   ├── index-sort-f.html
+│   │   ├── index-sort-l.html
+│   │   ├── index.html
+│   │   ├── logic
+│   │   ├── ruby.png
+│   │   ├── snow.png
+│   │   └── updown.png
+│   └── lcov.info
 ├── devtools_options.yaml
 ├── ios
 │   ├── Flutter
@@ -115,6 +133,17 @@
 ├── pubspec.lock
 ├── pubspec.yaml
 ├── README.md
-└── structure.txt
+├── structure.txt
+└── test
+    ├── app
+    │   └── logic
+    ├── favorites
+    │   ├── domain
+    │   └── logic
+    ├── splash
+    │   └── logic
+    └── tastes
+        ├── domain
+        └── logic
 
-66 directories, 52 files
+83 directories, 64 files
